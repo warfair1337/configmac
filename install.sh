@@ -47,19 +47,19 @@ done 2>/dev/null &
 # Update macOS
 echo
 echo "${GREEN}Looking for updates.."
-echo
+echo "${NC}"
 sudo softwareupdate -i -a
 
 # Install Rosetta
 echo
 echo "${GREEN}Installing Rosetta.."
-echo
+echo "${NC}"
 sudo softwareupdate --install-rosetta --agree-to-license
 
 # Install Homebrew
 echo
 echo "${GREEN}Installing Homebrew.."
-echo
+echo "${NC}"
 NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Append Homebrew initialization to .zprofile
@@ -70,27 +70,28 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # Check installation and update
 echo
 echo "${GREEN}Checking installation.."
-echo
+echo "${NC}"
 brew update && brew doctor
 export HOMEBREW_NO_INSTALL_CLEANUP=1
 
 # Check for Brewfile in the current directory and use it if present
   echo
   echo "${GREEN}Brewfile found, using it to install packages..."
+  echo "${NC}"
   brew bundle
   echo "${GREEN}Installation from Brewfile complete."
+  echo "${NC}"
 
 # Cleanup
 echo
 echo "${GREEN}Cleaning up..."
 brew update && brew upgrade && brew cleanup && brew doctor
 mkdir -p ~/Library/LaunchAgents
-# brew tap homebrew/autoupdate
-# brew autoupdate start $HOMEBREW_UPDATE_FREQUENCY --upgrade --cleanup --immediate --sudo
 
 # Settings
 echo
 echo -n "${RED}Configure default system settings? ${NC}[Y/n]"
+echo "${NC}"
 read REPLY
 if [[ -z $REPLY || $REPLY =~ ^[Yy]$ ]]; then
   echo "${GREEN}Configuring default settings..."
@@ -102,14 +103,10 @@ fi
 # Dock settings
 echo
 echo -n "${RED}Apply Dock settings?? ${NC}[y/N]"
+echo "${NC}"
 read REPLY
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   brew install dockutil
-  # Handle replacements
-  for item in "${DOCK_REPLACE[@]}"; do
-    IFS="|" read -r add_app replace_app <<<"$item"
-    dockutil --add "$add_app" --replacing "$replace_app" &>/dev/null
-  done
   # Handle additions
   for app in "${DOCK_ADD[@]}"; do
     dockutil --add "$app" &>/dev/null
@@ -123,7 +120,7 @@ fi
 # Git Login
 echo
 echo "${GREEN}Set up git.."
-echo
+echo "${NC}"
 
 echo "${RED}Please enter your git username:${NC}"
 read name
@@ -140,10 +137,10 @@ echo "${GREEN}git setup done!"
 # ohmyzsh
 echo
 echo "${GREEN}Installing ohmyzsh!"
-echo
+echo "${NC}"
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 
-clear
+echo
 echo "${GREEN}______ _____ _   _  _____ "
 echo "${GREEN}|  _  \  _  | \ | ||  ___|"
 echo "${GREEN}| | | | | | |  \| || |__  "

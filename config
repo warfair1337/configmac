@@ -2,34 +2,6 @@
 # CONFIGURATION #
 #################
 
-# Homebrew Casks: Applications installed via Homebrew Cask.
-# These are GUI applications available through Homebrew.
-CASKS=(
-#  iterm2
-)
-
-# Homebrew Formulae: Command line tools installed via Homebrew.
-FORMULAE=(
-#  speedtest-cli
-)
-
-# NPM Packages: Global Node packages to be installed via NPM.
-NPMPACKAGES=(
-#  express
-)
-
-# VSCode Extensions: Specifies the IDs of Visual Studio Code extensions to install.
-# Each ID corresponds to an extension on the Visual Studio Code Marketplace.
-VSCODE=(
-#  "GitHub.copilot"
-)
-
-# App Store Apps: List of App Store app IDs to install via `mas` (Mac App Store CLI).
-# Each number corresponds to an application's ID in the App Store.
-APPSTORE=(
-#  409201541  # Pages
-)
-
 # SYSTEM SETTINGS: Commands to configure macOS system preferences and behaviors.
 SETTINGS=(
   # Sets the mouse speed to 3
@@ -43,7 +15,7 @@ SETTINGS=(
   # Disable show recent tags
   "defaults write com.apple.finder ShowRecentTags 0"
   # When performing a search, search the current folder by default
-  "defaults write com.apple.finder FXDefaultSearchScope -string "SCcf""
+  "defaults write com.apple.finder FXDefaultSearchScope SCcf"
   # Finder: disable window animations and Get Info animations
   "defaults write com.apple.finder DisableAllAnimations -bool true"
   # Shows all file extensions in Finder
@@ -69,14 +41,12 @@ SETTINGS=(
   "defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false"
   # Makes the Library folder visible in Finder
   "chflags nohidden ~/Library"
-  # Show the /Volumes folder
-  "chflags nohidden /Volumes"
   # Move dock to left
-  "defaults write com.apple.dock "orientation" -string "left""
+  "defaults write com.apple.dock "orientation" -string left"
   # Do not show recents
-  "defaults write com.apple.dock "show-recents" -bool "false""
+  "defaults write com.apple.dock "show-recents" -bool false"
   # Minimize effect: scale
-  "defaults write com.apple.dock "mineffect" -string "scale""
+  "defaults write com.apple.dock "mineffect" -string scale"
   # Disable shadow from screenshot
   "defaults write com.apple.screencapture "disable-shadow" -bool "true"
   # Set screenshot default location
@@ -134,6 +104,3 @@ DOCK_REMOVE=(
   "News"
   "Mail"
 )
-
-# HOMEBREW AUTOUPDATE: Configures the frequency of Homebrew package updates in milliseconds.
-HOMEBREW_UPDATE_FREQUENCY=86400 # 24 hours in milliseconds

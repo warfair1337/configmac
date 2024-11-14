@@ -52,11 +52,6 @@ echo -n "${RED}Apply Dock settings?? ${NC}[y/N]"
 read REPLY
 if [[ $REPLY =~ ^[Yy]$ ]]; then
   brew install dockutil
-  # Handle replacements
-  for item in "${DOCK_REPLACE[@]}"; do
-    IFS="|" read -r add_app replace_app <<<"$item"
-    dockutil --add "$add_app" --replacing "$replace_app" &>/dev/null
-  done
   # Handle additions
   for app in "${DOCK_ADD[@]}"; do
     dockutil --add "$app" &>/dev/null
