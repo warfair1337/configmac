@@ -8,8 +8,6 @@
 # Last Updated: March 1, 2024
 # ==============================================================================
 
-source ./config
-
 # COLOR
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -88,34 +86,93 @@ echo "${GREEN}Cleaning up..."
 brew update && brew upgrade && brew cleanup && brew doctor
 mkdir -p ~/Library/LaunchAgents
 
+
 # Settings
 echo
-echo -n "${RED}Configure default system settings? ${NC}[Y/n]"
+echo "${RED}Configuring default system settings?"
 echo "${NC}"
-read REPLY
-if [[ -z $REPLY || $REPLY =~ ^[Yy]$ ]]; then
-  echo "${GREEN}Configuring default settings..."
-  for setting in "${SETTINGS[@]}"; do
-    eval $setting
-  done
-fi
+
+# Finder settings
+defaults write com.apple.finder ShowRecentTags 0
+defaults write com.apple.finder FXDefaultSearchScope SCcf
+defaults write com.apple.finder DisableAllAnimations 1
+defaults write com.apple.finder AppleShowAllFiles 1
+defaults write com.apple.finder ShowPathbar 1
+defaults write com.apple.finder ShowStatusBar 1
+defaults write com.apple.finder NewWindowTarget PfHm
+defaults write com.apple.Finder FXPreferredViewStyle Nlsv
+defaults write com.apple.finder _FXSortFoldersFirst 1
+defaults write com.apple.finder FXEnableExtensionChangeWarning 0
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop 0
+defaults write com.apple.finder ShowRemovableMediaOnDesktop 0
+defaults write com.apple.finder AppleShowAllExtensions 1
+
+# Desktop and dock settings
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop 0
+defaults write com.apple.desktopservices DSDontWriteNetworkStores 1
+defaults write com.apple.desktopservices DSDontWriteUSBStores 1
+defaults write com.apple.dock "orientation" -string left
+defaults write com.apple.dock "show-recents" -bool false
+defaults write com.apple.dock "mineffect" -string scale
+
+# Other settings
+defaults -currentHost write com.apple.ImageCapture disableHotPlug 1
+defaults write com.apple.screencapture "disable-shadow" -bool true
+defaults write com.apple.screencapture "location" -string "~/Data/Screenshots"
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+defaults write com.apple.TimeMachine "DoNotOfferNewDisksForBackup" -bool true
+chflags nohidden ~/Library
+
+# Safari settings
+defaults write com.apple.Safari ShowFullURLInSmartSearchField 1
+defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch 1
+defaults write com.apple.Safari ExcludePrivateWindowWhenRestoringSessionAtLaunch 1
+defaults write com.apple.Safari ShowBackgroundImageInFavorites 0
+defaults write com.apple.Safari ShowFavorites 0
+defaults write com.apple.Safari ShowFrequentlyVisitedSites 0
+defaults write com.apple.Safari ShowHighlightsInFavorites 0
+defaults write com.apple.Safari ShowPrivacyReportInFavorites 0
+defaults write com.apple.Safari ShowReadingListInFavorites 0
+defaults write com.apple.Safari HideStartPageSiriSuggestionsEmptyItemView 0
+defaults write com.apple.Safari ShowSiriSuggestionsPreference 0
+defaults write com.apple.Safari NSNavLastRootDirectory "~/Downloads"
+defaults write com.apple.Safari DownloadsClearingPolicy 2
+defaults write com.apple.Safari AutoOpenSafeDownloads 0
+defaults write com.apple.Safari OpenNewTabsInFront 1
+defaults write com.apple.Safari IncludeDevelopMenu 1
+
 
 # Dock settings
 echo
-echo -n "${RED}Apply Dock settings?? ${NC}[y/N]"
+echo "${RED}Applying dock settings.."
 echo "${NC}"
-read REPLY
-if [[ $REPLY =~ ^[Yy]$ ]]; then
-  brew install dockutil
-  # Handle additions
-  for app in "${DOCK_ADD[@]}"; do
-    dockutil --add "$app" &>/dev/null
-  done
-  # Handle removals
-  for app in "${DOCK_REMOVE[@]}"; do
-    dockutil --remove "$app" &>/dev/null
-  done
-fi
+
+echo "${GREEN}Installing dockutil.."
+echo "${NC}"
+brew install dockutil
+
+echo "${GREEN}Removing dock items.."
+echo "${NC}"
+dockutil --remove "Maps"
+dockutil --remove "FaceTime"
+dockutil --remove "Contacts"
+dockutil --remove "Freeform"
+dockutil --remove "TV"
+dockutil --remove "News"
+dockutil --remove "Mail"
+
+echo "${GREEN}Adding dock items.."
+echo "${NC}"
+dockutil --add "/Applications/WezTerm.app"
+dockutil --add "/Applications/Zed.app"
+dockutil --add "/Applications/Windows App.app"
+dockutil --add "/Applications/Signal.app"
+dockutil --add "/Applications/Firefox.app"
+dockutil --add "/Applications/Brave Browser.app"
+dockutil --add "/Applications/Google Chrome.app"
+dockutil --add "/Applications/Proton Mail.app"
+dockutil --add "/Applications/Proton Pass.app"
+
 
 # Git Login
 echo
