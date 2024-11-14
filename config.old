@@ -1,3 +1,8 @@
+#################
+# CONFIGURATION #
+#################
+
+# SYSTEM SETTINGS: Commands to configure macOS system preferences and behaviors.
 SETTINGS=(
   # Sets the mouse speed to 3
   # "defaults write -g com.apple.mouse.scaling 3"
@@ -48,6 +53,8 @@ SETTINGS=(
   "defaults write com.apple.screencapture "disable-shadow" -bool "true"
   # Set screenshot default location
   "defaults write com.apple.screencapture "location" -string "~/Data/Screenshots""
+  # Show full URL in Safari
+  "defaults write com.apple.Safari "ShowFullURLInSmartSearchField" -bool true"
   # Hide external disks from desktop
   "defaults write com.apple.finder "ShowExternalHardDrivesOnDesktop" -bool false"
   # Hide removable media from desktop
@@ -56,3 +63,43 @@ SETTINGS=(
   "defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true"
   # Don't offer new disks for Time Machine backup
   "defaults write com.apple.TimeMachine "DoNotOfferNewDisksForBackup" -bool true"
+  # Safari
+  "defaults write com.apple.Safari AlwaysRestoreSessionAtLaunch 1"
+  "defaults write com.apple.Safari ExcludePrivateWindowWhenRestoringSessionAtLaunch 1"
+  "defaults write com.apple.Safari ShowBackgroundImageInFavorites 0"
+  "defaults write com.apple.Safari ShowFavorites 0"
+  "defaults write com.apple.Safari ShowFrequentlyVisitedSites 0"
+  "defaults write com.apple.Safari ShowHighlightsInFavorites 0"
+  "defaults write com.apple.Safari ShowPrivacyReportInFavorites 0"
+  "defaults write com.apple.Safari ShowReadingListInFavorites 0"
+  "defaults write com.apple.Safari HideStartPageSiriSuggestionsEmptyItemView 0"
+  "defaults write com.apple.Safari ShowSiriSuggestionsPreference 0"
+  "defaults write com.apple.Safari NSNavLastRootDirectory "~/Downloads""
+  "defaults write com.apple.Safari DownloadsClearingPolicy 2"
+  "defaults write com.apple.Safari AutoOpenSafeDownloads 0"
+  "defaults write com.apple.Safari OpenNewTabsInFront 1"
+  "defaults write com.apple.Safari IncludeDevelopMenu 1"
+)
+
+# DOCK SETTINGS: Configuration for adding and removing dock items
+
+DOCK_ADD=(
+  "/Applications/WezTerm.app"
+  "/Applications/Zed.app"
+  "/Applications/Windows App.app"
+  "/Applications/Signal.app"
+  "/Applications/Firefox.app"
+  "/Applications/Brave Browser.app"
+  "/Applications/Google Chrome.app"
+  "/Applications/Proton Mail.app"
+  "/Applications/Proton Pass.app"
+)
+DOCK_REMOVE=(
+  "Maps"
+  "FaceTime"
+  "Contacts"
+  "Freeform"
+  "TV"
+  "News"
+  "Mail"
+)
