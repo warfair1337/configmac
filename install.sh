@@ -1,11 +1,8 @@
 #!/bin/zsh
 # ==============================================================================
 # Title: install.sh
-# Author: Daniel Vier
-# Email: daniel.vier@gmail.com
 # Description: Automates the setup and configuration of macOS, including
 #              installation of essential applications and system preferences.
-# Last Updated: March 1, 2024
 # ==============================================================================
 
 # COLOR

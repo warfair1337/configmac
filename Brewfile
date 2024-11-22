@@ -28,6 +28,7 @@ cask "angry-ip-scanner"
 cask "bartender"
 cask "font-meslo-lg-nerd-font"
 cask "hazeover"
+
 # cask "istat-menus"
 cask "latest"
 cask "miniconda"
@@ -55,6 +56,7 @@ cask "keka"
 cask "raspberry-pi-imager"
 cask "syncthing"
 cask "transnomino"
+
 # Casks: Productivity
 cask "chatgpt"
 cask "db-browser-for-sqlite"
