@@ -52,6 +52,7 @@ cask "xnviewmp"
 # Casks: File Management
 cask "a-better-finder-attributes"
 cask "balenaetcher"
+cask "cryptomator"
 cask "keka"
 cask "raspberry-pi-imager"
 cask "syncthing"

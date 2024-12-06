@@ -184,6 +184,7 @@ read email
 git config --global user.name "$name"
 git config --global user.email "$email"
 git config --global color.ui true
+git config --global ini.defaultBranch main
 
 echo
 echo "${GREEN}git setup done!"
