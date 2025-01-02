@@ -11,14 +11,15 @@ brew "lolcat"
 brew "midnight-commander"
 brew "nano"
 brew "nanorc"
-brew "python@3.10"
+#brew "python@3.10"
 brew "python@3.12"
-brew "python@3.13"
+#brew "python@3.13"
 brew "starship"
 brew "stats"
 tap "cirruslabs/cli"
 brew "cirruslabs/cli/tart"
 brew "telnet"
+brew "viu"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 
@@ -28,13 +29,13 @@ cask "angry-ip-scanner"
 cask "bartender"
 cask "font-meslo-lg-nerd-font"
 cask "hazeover"
-
+cask "ghostty"
 # cask "istat-menus"
 cask "latest"
 cask "miniconda"
 cask "powershell"
 cask "tailscale"
-cask "wezterm"
+# cask "wezterm"
 
 # Casks: Browsers
 cask "brave-browser"
@@ -83,4 +84,4 @@ mas "Infuse", id: 1136220934
 mas "Pixelmator Pro", id: 1289583905
 mas "WiFi Explorer", id: 494803304
 mas "Windows App", id: 1295203466
-mas "Yubico Authenticator", id: 1497506650
+# mas "Yubico Authenticator", id: 1497506650
