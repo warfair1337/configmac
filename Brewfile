@@ -38,7 +38,8 @@ cask "tailscale"
 # cask "wezterm"
 
 # Casks: Browsers
-cask "brave-browser"
+# cask "brave-browser"
+cask "mullvad-browser"
 cask "firefox"
 cask "google-chrome"
 
